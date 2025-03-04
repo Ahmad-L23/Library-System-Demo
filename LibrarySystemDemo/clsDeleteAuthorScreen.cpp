@@ -3,7 +3,7 @@
 #include"clsScreen.cpp"
 using namespace std;
 
-class clasUpdateAuthorScreen {
+class clasDeletedAuthorScreen {
 
 private:
     template<typename T>
@@ -32,21 +32,6 @@ private:
         }
     }
 
-    static void readAuthorInfo(clsAuthor& Author)
-    {
-        cout << "\nEnter Author Age: ";
-        Author.setAge(readData<int>());
-        cout << "\nEnter Author Nationality: ";
-        Author.setNationality(readData<string>());
-        cout << "\nEnter Number of Books you want to add: ";
-        int numberOfBooks = 0;
-        vector<string> books;
-        cin >> numberOfBooks;
-        cin.ignore();
-        readBooks(books, numberOfBooks);
-        if (!books.empty())
-            Author.setBooks(books);
-    }
 
     static void printAuthorData(clsAuthor& Data)
     {
@@ -60,10 +45,10 @@ private:
 
 public:
 public:
-    static void showUpdateAuthorScreen()
+    static void showDeleteAuthorScreen()
     {
-        
-        clsScreen::showScreen("UPDATE AUTHOR SCREEN");
+      
+        clsScreen::showScreen("DELETE AUTHOR SCREEN");
         string AuthorName;
         cout << "\n Enter Author Name: ";
         getline(cin, AuthorName);
@@ -74,40 +59,29 @@ public:
             getline(cin, AuthorName);
         }
 
-        clsAuthor newAuthor = clsAuthor::Find(AuthorName);
+        clsAuthor Author = clsAuthor::Find(AuthorName);
 
-        clsScreen::showScreen("CURRENT AUTHOR DETAILS");
-        printAuthorData(newAuthor);
+        clsScreen::showScreen("AUTHOR INFORMATION");
+       
+        printAuthorData(Author);
         cout << "\n==================================================================================\n";
 
-        cout << "\n Are you sure you want to update this author? (y/n): ";
+        cout << "\nAre you sure you want to delete this author? (y/n): ";
         char answer;
         cin >> answer;
 
         if (answer == 'y' || answer == 'Y')
         {
-            readAuthorInfo(newAuthor);
-
-            clsAuthor::enSaveResults saveResult = newAuthor.Save();
-
-            switch (saveResult)
+            if (Author.Delete()) {
+                clsScreen::showScreen("AUTHOR DELETED SUCCESSFULLY :-)");
+            }
+            else
             {
-            case clsAuthor::enSaveResults::svSucceeded:
-                
-                clsScreen::showScreen("AUTHOR UPDATED SUCCESSFULLY : -)");
-                printAuthorData(newAuthor);
-                break;
-
-            case clsAuthor::enSaveResults::svFaildEmptyObject:
-                cout << "\n[!] Error: Author was not saved because the data is empty.\n";
-                break;
+                cout << "\n[!] Error: Author was not deleted.\n";
             }
         }
-        else
-        {
-            cout << "\nAction canceled. Author was not updated.\n";
-        }
+        
     }
-       
+
 };
 

@@ -1,8 +1,26 @@
-﻿  mian.cpp
-C:\OOP_Projects\LibrarySystemDemo\LibrarySystemDemo\clsUpdateAuthorScreen.cpp(12,9): warning C4984: 'if constexpr' is a C++17 language extension
-  (compiling source file 'mian.cpp')
-      C:\OOP_Projects\LibrarySystemDemo\LibrarySystemDemo\clsUpdateAuthorScreen.cpp(9,14):
+﻿  clasAddNewAuthorScreen.cpp
+C:\OOP_Projects\LibrarySystemDemo\LibrarySystemDemo\clasAddNewAuthorScreen.cpp(13,9): warning C4984: 'if constexpr' is a C++17 language extension
+      C:\OOP_Projects\LibrarySystemDemo\LibrarySystemDemo\clasAddNewAuthorScreen.cpp(10,14):
+      This diagnostic occurred in the compiler generated function 'T clasAddNewAuthorScreen::readData(void)'
+  
+  clsAuthor.cpp
+  clsDeleteAuthorScreen.cpp
+C:\OOP_Projects\LibrarySystemDemo\LibrarySystemDemo\clsDeleteAuthorScreen.cpp(13,9): warning C4984: 'if constexpr' is a C++17 language extension
+      C:\OOP_Projects\LibrarySystemDemo\LibrarySystemDemo\clsDeleteAuthorScreen.cpp(10,14):
+      This diagnostic occurred in the compiler generated function 'T clasDeletedAuthorScreen::readData(void)'
+  
+  clsScreen.cpp
+  clsUpdateAuthorScreen.cpp
+C:\OOP_Projects\LibrarySystemDemo\LibrarySystemDemo\clsUpdateAuthorScreen.cpp(13,9): warning C4984: 'if constexpr' is a C++17 language extension
+      C:\OOP_Projects\LibrarySystemDemo\LibrarySystemDemo\clsUpdateAuthorScreen.cpp(10,14):
       This diagnostic occurred in the compiler generated function 'T clasUpdateAuthorScreen::readData(void)'
   
+  mian.cpp
+C:\OOP_Projects\LibrarySystemDemo\LibrarySystemDemo\clasAddNewAuthorScreen.cpp(13,9): warning C4984: 'if constexpr' is a C++17 language extension
+  (compiling source file 'mian.cpp')
+      C:\OOP_Projects\LibrarySystemDemo\LibrarySystemDemo\clasAddNewAuthorScreen.cpp(10,14):
+      This diagnostic occurred in the compiler generated function 'T clasAddNewAuthorScreen::readData(void)'
+  
+  Generating Code...
 C:\OOP_Projects\LibrarySystemDemo\LibrarySystemDemo\clsAuthor.cpp(281,1): warning C4715: 'clsAuthor::Save': not all control paths return a value
   LibrarySystemDemo.vcxproj -> C:\OOP_Projects\LibrarySystemDemo\x64\Debug\LibrarySystemDemo.exe

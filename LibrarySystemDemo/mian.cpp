@@ -1,10 +1,10 @@
 #include<iostream>
-#include"clsUpdateAuthorScreen.cpp"
+#include"clasAddNewAuthorScreen.cpp"
 using namespace std;
 
 int main() {
 	
-	clasUpdateAuthorScreen::showUpdateAuthorScreen();
+	clasAddNewAuthorScreen::showAddNewAuthorScreen();
 	
 	return 0;
 }

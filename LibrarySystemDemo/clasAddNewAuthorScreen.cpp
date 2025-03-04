@@ -1,5 +1,6 @@
 #include<iostream>
 #include"clsAuthor.cpp"
+#include"clsScreen.cpp"
 using namespace std;
 
 class clasAddNewAuthorScreen {
@@ -58,39 +59,44 @@ private:
     }
 
 public:
+public:
     static void showAddNewAuthorScreen()
     {
-        string AuthorName = "";
-        cout << "\nEnter Author Name :" << endl;
+        clsScreen::showScreen(" ADD NEW AUTHOR SCREEN ");
+        string AuthorName;
+        cout << "\n Enter Author Name: ";
         getline(cin, AuthorName);
 
         while (clsAuthor::isAuthorExist(AuthorName))
         {
-            cout << "\n Author Name Is Already Used, choose another one: ";
-            getline(cin, AuthorName); 
+            cout << "\n [!] Author name is already in use. Please choose another: ";
+            getline(cin, AuthorName);
         }
 
         clsAuthor newAuthor = clsAuthor::getAddNewAuthorObject(AuthorName);
         readAuthorInfo(newAuthor);
 
-        clsAuthor::enSaveResults saveResult;
-        saveResult = newAuthor.Save();
+        clsAuthor::enSaveResults saveResult = newAuthor.Save();
 
+       
+        clsScreen::showScreen(" AUTHOR INFORMATION");
         switch (saveResult)
         {
         case clsAuthor::enSaveResults::svSucceeded:
-            cout << "\nAuthor Added Successfully :-)\n";
+            cout << "\nAuthor added successfully!";
             printAuthorData(newAuthor);
+            cout << "\n==================================================================================\n";
             break;
 
         case clsAuthor::enSaveResults::svFaildEmptyObject:
-            cout << "\nError: Author was not saved because it's Empty";
+            cout << "\n[!] Error: Author was not saved because the data is empty.\n";
             break;
 
         case clsAuthor::enSaveResults::svFaildUserExists:
-            cout << "\nError: Author was not saved because AuthorName is used!\n";
+            cout << "\n[!] Error: Author was not saved because the name is already used!\n";
             break;
         }
     }
+
 };
 

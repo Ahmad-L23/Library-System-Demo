@@ -129,6 +129,8 @@
   <ItemGroup>
     <ClCompile Include="clasAddNewAuthorScreen.cpp" />
     <ClCompile Include="clsAuthor.cpp" />
+    <ClCompile Include="clsDeleteAuthorScreen.cpp" />
+    <ClCompile Include="clsScreen.cpp" />
     <ClCompile Include="clsUpdateAuthorScreen.cpp" />
     <ClCompile Include="mian.cpp" />
   </ItemGroup>

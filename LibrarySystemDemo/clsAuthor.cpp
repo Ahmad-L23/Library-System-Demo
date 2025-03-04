@@ -125,7 +125,7 @@ private:
     }
 
 
-    static void SaveUsersDataToFile(vector <clsAuthor> vAuthors)
+    static void SaveAuthorsDataToFile(vector <clsAuthor> vAuthors)
     {
 
         fstream MyFile;
@@ -138,7 +138,7 @@ private:
 
             for (clsAuthor Author : vAuthors)
             {
-                if (Author.MarkedForDeleted() == false)
+                if (Author.MarkedFDeleted == false)
                 {
                     //we only write records that are not marked for delete.  
                     DataLine = authorObjectToLine(Author);
@@ -167,7 +167,7 @@ private:
                 break;
             }
         }
-        SaveUsersDataToFile(vAuthors);
+        SaveAuthorsDataToFile(vAuthors);
     }
 
 
@@ -281,5 +281,22 @@ public:
     }
 
 
+    bool Delete()
+    {
+        vector<clsAuthor>vAuthors;
+        vAuthors = loadAuthorsFromFile();
+
+        for (clsAuthor Author : vAuthors)
+        {
+            if (Author.name == name)
+            {
+                Author.MarkedFDeleted = true;
+                break;
+            }
+        }
+        SaveAuthorsDataToFile(vAuthors);
+        *this = GetEmptyUserObject();
+        return true;
+    }
 
 };
