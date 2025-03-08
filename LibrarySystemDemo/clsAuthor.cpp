@@ -183,6 +183,13 @@ public:
         this->nationality = nationality;
         this->books = books;
     }
+
+    clsAuthor(string name, int age, string nationality)
+    {
+        this->name = name;
+        this->age = age;
+        this->nationality = nationality;
+    }
     void setName(string name)
     {
         this->name = name;
@@ -299,4 +306,8 @@ public:
         return true;
     }
 
+    static vector<clsAuthor>getAllAuthors()
+    {
+        return loadAuthorsFromFile();
+    }
 };

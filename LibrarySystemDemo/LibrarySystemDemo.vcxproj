@@ -128,14 +128,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="clasAddNewAuthorScreen.cpp" />
+    <ClCompile Include="clsAddNewBook.cpp" />
     <ClCompile Include="clsAuthor.cpp" />
+    <ClCompile Include="clsBook.cpp" />
     <ClCompile Include="clsDeleteAuthorScreen.cpp" />
     <ClCompile Include="clsScreen.cpp" />
+    <ClCompile Include="clsShowAllAuthors.cpp" />
     <ClCompile Include="clsUpdateAuthorScreen.cpp" />
     <ClCompile Include="mian.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Authors.txt" />
+    <Text Include="Books.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
