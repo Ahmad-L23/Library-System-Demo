@@ -1,35 +1,37 @@
 #include <iostream>
-#include <string>
-#include <vector>
-#include <fstream>
 #include "clsAuthor.cpp"
 using namespace std;
 
 class clsBook
 {
+public:
+    enum enStatus { Add, Update };
 private:
+    
+    enStatus type;
     string title;
     string category;
     string language;
     clsAuthor Author;
     int numberOfPages;
 
-    static string bookObjectToLine(clsBook book, string separator = "#\\#")
+    static string bookObjectToLine(clsBook book, string separator = "#//#")
     {
         string Line = "";
-        Line += book.title + separator;
-        Line += book.category + separator;
-        Line += book.language + separator;
-        Line += to_string(book.numberOfPages) + separator;
-        Line += "(";
-        Line += book.Author.getName() + ",";
-        Line += to_string(book.Author.getAge()) + ",";
-        Line += book.Author.getNationality();
-        Line += ")";
+        Line += book.getTitle() + separator;
+        Line += book.getCategory() + separator;
+        Line += book.getLanguage() + separator;
+        Line += to_string(book.getNumberOfPages()) + separator;
+
+        // Only store author's name, age, and nationality
+        Line += book.getAuthor().getName() + ",";
+        Line += to_string(book.getAuthor().getAge()) + ",";
+        Line += book.getAuthor().getNationality();
+
         return Line;
     }
 
-    static clsBook bookLineToObject(string Line, string separator = "#\\#")
+    static clsBook bookLineToObject(string Line, string separator = "#//#")
     {
         vector<string> vBookData;
         int pos = 0;
@@ -51,23 +53,19 @@ private:
         }
         vAuthorData.push_back(authorData);
 
-        if (vAuthorData.size() < 3)
-        {
-            throw runtime_error("Invalid author data format");
-        }
 
         int numberOfPages = stoi(vBookData[3]);
         int authorAge = stoi(vAuthorData[1]);
 
         clsAuthor author(vAuthorData[0], authorAge, vAuthorData[2]);
-        return clsBook(vBookData[0], vBookData[1], vBookData[2], numberOfPages, author);
+        return clsBook(enStatus::Update, vBookData[0], vBookData[1], vBookData[2], numberOfPages, author);
     }
 
     static vector<clsBook> loadBooksFromFile()
     {
         vector<clsBook> books;
         fstream myFile;
-        myFile.open("Books.txt", ios::in); // Open the file in read mode
+        myFile.open("Books.txt", ios::in);
 
         if (myFile.is_open())
         {
@@ -76,8 +74,8 @@ private:
             {
                 try
                 {
-                    clsBook book = bookLineToObject(line); // Convert line to book object
-                    books.push_back(book); // Add the book to the vector
+                    clsBook book = bookLineToObject(line);
+                    books.push_back(book);
                 }
                 catch (const runtime_error& e)
                 {
@@ -103,11 +101,26 @@ public:
         numberOfPages = 0;
     }
 
-    clsBook(string title, string category, string language, int numberOfPages, clsAuthor author)
-        : title(title), category(category), language(language), numberOfPages(numberOfPages), Author(author) {
+    clsBook(enStatus type, string title, string category, string language, int numberOfPages, clsAuthor author)
+        : type(type), title(title), category(category), language(language), numberOfPages(numberOfPages), Author(author) {
     }
 
-    static bool FindBook(string title)
+    string getTitle() const { return title; }
+    void setTitle(const string& newTitle) { title = newTitle; }
+
+    string getCategory() const { return category; }
+    void setCategory(const string& newCategory) { category = newCategory; }
+
+    string getLanguage() const { return language; }
+    void setLanguage(const string& newLanguage) { language = newLanguage; }
+
+    int getNumberOfPages() const { return numberOfPages; }
+    void setNumberOfPages(int newNumberOfPages) { numberOfPages = newNumberOfPages; }
+
+    clsAuthor getAuthor() const { return Author; }
+    void setAuthor(const clsAuthor& newAuthor) { Author = newAuthor; }
+
+    static bool FindBook(const string& title)
     {
         vector<clsBook> books = loadBooksFromFile();
         for (const auto& book : books)
@@ -120,7 +133,7 @@ public:
         return false;
     }
 
-    static void addNewBook(clsBook& book)
+    static enStatus addNewBook(clsBook& book)
     {
         fstream myFile;
         myFile.open("Books.txt", ios::out | ios::app);
@@ -131,5 +144,6 @@ public:
             myFile << Line << endl;
             myFile.close();
         }
+        return enStatus::Add;
     }
 };

@@ -1,10 +1,10 @@
 #include<iostream>
-#include"clsShowAllAuthors.cpp"
+#include"clsAddNewBookScreen.cpp"
 using namespace std;
 
 int main() {
 	
-	clsShowAllAuthorsScreen::showAllAuthorsScreen();
+	clsAddNewBookScreen::showAddNewBookScreen();
 	
 	return 0;
 }

@@ -128,12 +128,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="clasAddNewAuthorScreen.cpp" />
-    <ClCompile Include="clsAddNewBook.cpp" />
+    <ClCompile Include="clsAddNewBookScreen.cpp" />
     <ClCompile Include="clsAuthor.cpp" />
     <ClCompile Include="clsBook.cpp" />
     <ClCompile Include="clsDeleteAuthorScreen.cpp" />
     <ClCompile Include="clsScreen.cpp" />
     <ClCompile Include="clsShowAllAuthors.cpp" />
+    <ClCompile Include="clsString.cpp" />
     <ClCompile Include="clsUpdateAuthorScreen.cpp" />
     <ClCompile Include="mian.cpp" />
   </ItemGroup>

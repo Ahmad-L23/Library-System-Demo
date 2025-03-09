@@ -28,10 +28,6 @@ private:
         }
         vUserData.push_back(line);
 
-        if (vUserData.size() < 4) {
-            return clsAuthor();
-        }
-
         int authorAge = stoi(vUserData[1]);
         vector<string> booksList;
         string booksStr = vUserData[3];
@@ -186,6 +182,7 @@ public:
 
     clsAuthor(string name, int age, string nationality)
     {
+        this->mode = enMode::AddNewMode;
         this->name = name;
         this->age = age;
         this->nationality = nationality;
@@ -238,12 +235,12 @@ public:
     static clsAuthor Find(string name)
     {
         fstream MyFile;
-        MyFile.open("Authors.txt", ios::in);//read Mode
+        MyFile.open("Authors.txt", ios::in); // read Mode
         if (MyFile.is_open()) {
             string Line;
             while (getline(MyFile, Line)) {
                 clsAuthor Author = authorLineToObject(Line);
-                if (Author.name == name)
+                if (Author.getName() == name)
                 {
                     MyFile.close();
                     return Author;
@@ -261,7 +258,7 @@ public:
     static bool isAuthorExist(string name)
     {
         clsAuthor author = clsAuthor::Find(name);
-        return(!author.isEmpty());
+        return (!author.isEmpty());
     }
     enum enSaveResults { svFaildEmptyObject = 0, svSucceeded = 1, svFaildUserExists = 2 };
 

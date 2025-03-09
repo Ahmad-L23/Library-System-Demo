@@ -39,7 +39,10 @@
     <ClCompile Include="clsBook.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clsAddNewBook.cpp">
+    <ClCompile Include="clsAddNewBookScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clsString.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
