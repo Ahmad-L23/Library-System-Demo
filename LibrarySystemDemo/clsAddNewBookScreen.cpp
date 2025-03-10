@@ -1,6 +1,5 @@
 #include <iostream>
 #include "clsBook.cpp"
-
 #include "clsString.cpp"
 
 using namespace std;
@@ -39,21 +38,18 @@ public:
         cout << "\nEnter Book Title: ";
         bookTitle = clsString::readData<string>();
 
-        while (clsBook::FindBook(bookTitle))
+        while (clsBook::isBookExist(bookTitle))
         {
             cout << "\n[!] Book title already exists. Please enter a different title: ";
             bookTitle = clsString::readData<string>();
         }
 
-        // Author input and check
         string authorName;
         cout << "\nEnter Author Name: ";
         authorName = clsString::readData<string>();
 
-        // Check if author exists in Authors.txt
         clsAuthor author = clsAuthor::Find(authorName);
 
-        // If author does not exist, add them to Authors.txt
         if (author.isEmpty())
         {
             int age;
@@ -64,27 +60,21 @@ public:
             cout << "\nEnter Author Nationality: ";
             nationality = clsString::readData<string>();
 
-            // Create a new author object and save it to Authors.txt
             clsAuthor newAuthor(authorName, age, nationality);
-            
-            author = newAuthor; // Use the newly created author
+
+            author = newAuthor;
         }
 
-        // Create a new book object
         clsBook newBook(clsBook::enStatus::Add, bookTitle, "", "", 0, author);
 
-        // Reading other book details
         readBookData(newBook);
 
-        // Add the new book's title to the author's list of books
         vector<string> updatedBooks = author.getBooks();
-        updatedBooks.push_back(bookTitle);  // Add the new book title to the list
-        author.setBooks(updatedBooks);  // Update the author's books list
+        updatedBooks.push_back(bookTitle);
+        author.setBooks(updatedBooks);
 
-        // Save the updated author to the file
         author.Save();
 
-        // Add the new book to the book collection
         clsBook::enStatus saveResult = clsBook::addNewBook(newBook);
 
         cout << "\n========= BOOK INFORMATION =========\n";

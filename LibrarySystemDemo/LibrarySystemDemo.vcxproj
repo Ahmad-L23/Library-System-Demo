@@ -136,6 +136,7 @@
     <ClCompile Include="clsShowAllAuthors.cpp" />
     <ClCompile Include="clsString.cpp" />
     <ClCompile Include="clsUpdateAuthorScreen.cpp" />
+    <ClCompile Include="clsUpdateBookScreen.cpp" />
     <ClCompile Include="mian.cpp" />
   </ItemGroup>
   <ItemGroup>

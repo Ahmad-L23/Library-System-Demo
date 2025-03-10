@@ -1,10 +1,10 @@
 #include<iostream>
-#include"clsAddNewBookScreen.cpp"
+#include"clsUpdateBookScreen.cpp"
 using namespace std;
 
 int main() {
 	
-	clsAddNewBookScreen::showAddNewBookScreen();
+	clsUpdateBookScreen::showUpdateBookScreen();
 	
 	return 0;
 }

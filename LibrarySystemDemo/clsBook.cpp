@@ -5,7 +5,7 @@ using namespace std;
 class clsBook
 {
 public:
-    enum enStatus { Add, Update };
+    enum enStatus {Empty, Add, Update };
 private:
     
     enStatus type;
@@ -61,6 +61,31 @@ private:
         return clsBook(enStatus::Update, vBookData[0], vBookData[1], vBookData[2], numberOfPages, author);
     }
 
+    static void SaveBooksDataToFile(vector <clsBook> vBooks)
+    {
+
+        fstream MyFile;
+        MyFile.open("Books.txt", ios::out);//overwrite
+
+        string DataLine;
+
+        if (MyFile.is_open())
+        {
+
+            for (auto& book : vBooks)
+            {
+                    //we only write records that are not marked for delete.  
+                    DataLine = bookObjectToLine(book);
+                    MyFile << DataLine << endl;
+
+            }
+
+            MyFile.close();
+
+        }
+
+    }
+
     static vector<clsBook> loadBooksFromFile()
     {
         vector<clsBook> books;
@@ -92,6 +117,12 @@ private:
         return books;
     }
 
+    static clsBook getEmptyBookObject()
+    {
+        clsAuthor auhtor("", 0, "");
+        return clsBook(enStatus::Empty, "", "", "", 0, auhtor);
+    }
+
 public:
     clsBook() : Author(clsAuthor())
     {
@@ -120,7 +151,7 @@ public:
     clsAuthor getAuthor() const { return Author; }
     void setAuthor(const clsAuthor& newAuthor) { Author = newAuthor; }
 
-    static bool FindBook(const string& title)
+    static bool isBookExist(const string& title)
     {
         vector<clsBook> books = loadBooksFromFile();
         for (const auto& book : books)
@@ -131,6 +162,19 @@ public:
             }
         }
         return false;
+    }
+
+    static clsBook FindBook(const string& title)
+    {
+        vector<clsBook> books = loadBooksFromFile();
+        for (const auto& book : books)
+        {
+            if (book.title == title)
+            {
+                return book;
+            }
+        }
+        return getEmptyBookObject();
     }
 
     static enStatus addNewBook(clsBook& book)
@@ -146,4 +190,26 @@ public:
         }
         return enStatus::Add;
     }
+
+    bool isEmpty()
+    {
+        return title.empty() && category.empty() && language.empty() && numberOfPages == 0;
+    }
+    void updateBook()
+    {
+        vector<clsBook>vBooks;
+        vBooks = loadBooksFromFile();
+
+        for (auto& book : vBooks)
+        {
+            if (book.title == title)
+            {
+                book = *this;
+                break;
+            }
+
+        }
+        SaveBooksDataToFile(vBooks);
+    }
+
 };
