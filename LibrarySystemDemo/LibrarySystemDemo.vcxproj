@@ -132,6 +132,7 @@
     <ClCompile Include="clsAuthor.cpp" />
     <ClCompile Include="clsBook.cpp" />
     <ClCompile Include="clsDeleteAuthorScreen.cpp" />
+    <ClCompile Include="clsDeleteBookScreen.cpp" />
     <ClCompile Include="clsScreen.cpp" />
     <ClCompile Include="clsShowAllAuthors.cpp" />
     <ClCompile Include="clsString.cpp" />

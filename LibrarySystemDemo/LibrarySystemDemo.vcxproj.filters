@@ -48,6 +48,9 @@
     <ClCompile Include="clsUpdateBookScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="clsDeleteBookScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Authors.txt" />

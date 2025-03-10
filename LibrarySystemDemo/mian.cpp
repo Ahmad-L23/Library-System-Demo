@@ -1,10 +1,10 @@
 #include<iostream>
-#include"clsUpdateBookScreen.cpp"
+#include"clsDeleteBookScreen.cpp"
 using namespace std;
 
 int main() {
 	
-	clsUpdateBookScreen::showUpdateBookScreen();
+	clsDeleteBookScreen::showDeleteBookScreen();
 	
 	return 0;
 }

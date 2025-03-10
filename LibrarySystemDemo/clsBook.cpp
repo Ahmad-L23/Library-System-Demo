@@ -15,6 +15,9 @@ private:
     clsAuthor Author;
     int numberOfPages;
 
+    bool markedForDelete = false;
+
+
     static string bookObjectToLine(clsBook book, string separator = "#//#")
     {
         string Line = "";
@@ -74,9 +77,11 @@ private:
 
             for (auto& book : vBooks)
             {
-                    //we only write records that are not marked for delete.  
+                if (!book.markedForDelete)
+                {
                     DataLine = bookObjectToLine(book);
                     MyFile << DataLine << endl;
+                }
 
             }
 
@@ -212,4 +217,9 @@ public:
         SaveBooksDataToFile(vBooks);
     }
 
+    void Delete()
+    {
+        markedForDelete = true;
+        updateBook();
+    }
 };
